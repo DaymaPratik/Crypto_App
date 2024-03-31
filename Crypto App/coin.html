@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Page 3</h1>
+    <ol id="list"></ol>
+    <script>
+          const key = "coinranking9d8a426e2a31d48df9124786231a4feba669f1d8bd3f7ed6";
+          const list=document.querySelector('#list');
+          const options = {
+            headers: {
+              "Content-Type": "application/json",
+              "x-access-token":
+                "coinranking9d8a426e2a31d48df9124786231a4feba669f1d8bd3f7ed6",
+            },
+          };
+
+          async function getData() {
+            let response = await fetch(
+              "https://api.coinranking.com/v2/coins",
+              options
+            );
+            let data =await response.json();
+            showdata(data);
+          }
+          getData();
+      function showdata(datata){
+        // console.log(datata);
+        datata.data.coins.forEach(coin => {
+            // console.log(coin.uuid);
+            const listItem=document.createElement('li');
+            // const link=document.createElement('a');
+            list.appendChild(listItem);
+            // listItem.appendChild(link);
+            // link.href=`./Coins/${coin.name}`
+            listItem.setAttribute('coin-id',coin.uuid);
+            listItem.innerHTML=`${coin.name}`;
+            listItem.addEventListener('click',(e)=>{
+                e.preventDefault();
+                dispalyDetails(coin.uuid);
+            })
+        });
+        function dispalyDetails(coinId){
+            window.location.href = `https://api.coinranking.com/v2/coin/${coinId}`;
+        }
+      }
+    </script>
+  </body>
+</html>
