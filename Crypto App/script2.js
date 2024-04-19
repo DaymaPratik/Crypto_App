@@ -11,6 +11,7 @@
         const page2Search=document.querySelector('#page2-search');
         const page2Searchbtn=document.querySelector('#page2-search-btn');
         let topCoinsContainer=document.querySelector('#top-coins-conatiner');
+        
         // const moreBtn=document.querySelectorAll('.more-info-btn')
         let coinsData;
         // console.log(moreBtn);
@@ -46,11 +47,16 @@
                 min-[700px]:text-[15px] min-[700px]:p-[10px] max-[500px]:text-[10px]">Name</th>
                 <th class=" border-2 border-white  min-[1000px]:p-[15px] min-[1000px]:text-[20px] 
                 min-[700px]:text-[15px] min-[700px]:p-[10px] max-[500px]:text-[10px]">Price</th>
+                <th class=" border-2 border-white  min-[1000px]:p-[15px] min-[1000px]:text-[20px] 
+                min-[700px]:text-[15px] min-[700px]:p-[10px] max-[500px]:text-[10px]">More Info</th>
             </tr>
             `;
-            datata.data.coins.forEach(item => { /* for each to coins array present in data obj,present in datata obj this is the major diff in showDataFilter method */
+            datata.data.coins.forEach(item => { /*applying for each to coins array present in data obj,present in datata obj this is the major diff in showDataFilter method */
+            // console.log(item);
                 const cryptoRow=document.createElement('tr');
                 cryptoTable.appendChild(cryptoRow);
+               
+                
                 cryptoRow.className="border-2 border-white text-center"
                 cryptoRow.innerHTML=`
                 <td class="border-2 border-white font-bold
@@ -74,7 +80,10 @@
                 min-[1000px]:p-[15px] min-[1000px]:text-[20px] font-semibold
                 min-[700px]:text-[15px] min-[700px]:p-[10px] max-[500px]:text-[10px]">
                 ${item.price}</td> 
-                
+                <td class="border-2 border-white 
+                min-[1000px]:p-[15px] min-[1000px]:text-[20px] font-semibold
+                min-[700px]:text-[15px] min-[700px]:p-[10px] max-[500px]:text-[10px]"><a href="./coins2.html?id=${item.uuid}">More Info</a></td>
+            
                 
                 `
                 
@@ -99,9 +108,12 @@
                 min-[700px]:text-[15px] min-[700px]:p-[10px] max-[500px]:text-[10px]">Name</th>
                 <th class=" border-2 border-white  min-[1000px]:p-[15px] min-[1000px]:text-[20px] 
                 min-[700px]:text-[15px] min-[700px]:p-[10px] max-[500px]:text-[10px]">Price</th>
+                <th class=" border-2 border-white  min-[1000px]:p-[15px] min-[1000px]:text-[20px] 
+                min-[700px]:text-[15px] min-[700px]:p-[10px] max-[500px]:text-[10px]">More Info</th>
             </tr>
             `;
             datata.forEach(item => {     //as in this method only array is passed not an complete object so no need to write object name as in previous showData method
+                // console.log(item);
                 const cryptoRow=document.createElement('tr');
                 cryptoTable.appendChild(cryptoRow);
                 cryptoRow.className="border-2 border-black  text-center"
@@ -127,7 +139,10 @@
                 min-[1000px]:p-[15px] min-[1000px]:text-[20px] font-semibold
                 min-[700px]:text-[15px] min-[700px]:p-[10px] max-[500px]:text-[10px]">
                 ${item.price}</td> 
-                
+                <td class="border-2 border-white 
+                min-[1000px]:p-[15px] min-[1000px]:text-[20px] font-semibold
+                min-[700px]:text-[15px] min-[700px]:p-[10px] max-[500px]:text-[10px]"><a href="./coins2.html?id=${item.uuid}">More Info</a></td>
+    
                 `
                 
             });
@@ -154,18 +169,9 @@
         function filterCoins(input,datas){//returning filtered array
             return datas.data.coins.filter(coin => coin.name.toLowerCase().includes(input.toLowerCase()))
         }
-
-
-
-
      
 
 
 
 
    
-//MOre info btn
-        // <td class="border-2 border-white  more-info-btn
-                // min-[1000px]:p-[15px] min-[1000px]:text-[20px] font-semibold
-                // min-[700px]:text-[15px] min-[700px]:p-[10px] max-[500px]:text-[10px]" id="${item.uuid}" onlcick="dispalyDetails(datas)">
-                // <a href="./coin.html" >More Info</a></td> 
