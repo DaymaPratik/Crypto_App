@@ -12,9 +12,8 @@
         const page2Searchbtn=document.querySelector('#page2-search-btn');
         let topCoinsContainer=document.querySelector('#top-coins-conatiner');
         
-        // const moreBtn=document.querySelectorAll('.more-info-btn')
+        
         let coinsData;
-        // console.log(moreBtn);
 
 
 
@@ -29,10 +28,7 @@
            
         }
         getData();
-
-     
-
-
+        
         //FUNCTION TO SHOW ALL DATA
         function showData(datata){
             cryptoTable.innerHTML=`
@@ -82,15 +78,13 @@
                 ${item.price}</td> 
                 <td class="border-2 border-white 
                 min-[1000px]:p-[15px] min-[1000px]:text-[20px] font-semibold
-                min-[700px]:text-[15px] min-[700px]:p-[10px] max-[500px]:text-[10px]"><a href="./coins2.html?id=${item.uuid}">More Info</a></td>
+                min-[700px]:text-[15px] min-[700px]:p-[10px] max-[500px]:text-[10px] hover:text-black hover:bg-white transtition duration-300 ease-in"><a href="./coins2.html?id=${item.uuid}">Get Data</a></td>
             
                 
                 `
                 
             });
         }
-
-
 
 
 
@@ -141,7 +135,7 @@
                 ${item.price}</td> 
                 <td class="border-2 border-white 
                 min-[1000px]:p-[15px] min-[1000px]:text-[20px] font-semibold
-                min-[700px]:text-[15px] min-[700px]:p-[10px] max-[500px]:text-[10px]"><a href="./coins2.html?id=${item.uuid}">More Info</a></td>
+                min-[700px]:text-[15px] min-[700px]:p-[10px] max-[500px]:text-[10px] hover:text-black hover:bg-white transtition duration-300 ease-in"><a href="./coins2.html?id=${item.uuid}">Get Data</a></td>
     
                 `
                 
@@ -150,23 +144,25 @@
         
         
 
-
         //ADDING AN EVENT TO THE SEARCH BUTTON SO THAT WE CAN GET SEARCHED OUTPUT
         page2Searchbtn.addEventListener('click',(e)=>{
             e.preventDefault();
             let searchedTerm=page2Search.value;
-            if(searchedTerm !== ''){              //if serach intput present call filtered method  
+            if(searchedTerm !== ''){      
+                // console.log(coinsData);        //if serach intput present call filtered method  
                 let fitleredCoins=filterCoins(searchedTerm,coinsData);//variable to store an array to show filtered array
                 showDataFiltered(fitleredCoins);  //pass filtered array to method to show data
 
             }else{                                 /*If no serach input the it will call showData method 
                                                      to show all the data*/ 
+                
                 showData(coinsData);
-            }
+           }
             
             
         })
         function filterCoins(input,datas){//returning filtered array
+            // console.log(datas);
             return datas.data.coins.filter(coin => coin.name.toLowerCase().includes(input.toLowerCase()))
         }
      
